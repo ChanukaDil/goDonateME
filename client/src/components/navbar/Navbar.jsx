@@ -1,0 +1,72 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../../assests/images/Logo.png";
+import Button from "../Button";
+import { NavLink } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
+
+const Navbar = () => {
+  return (
+    <nav className="bg-transpaerent p-4 fixed top-0 left-0 right-0 z-10 bg-white ">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="text-white text-2xl font-semibold">
+          <Link to="/">
+            <img src={logo} alt="logo" />
+          </Link>
+        </div>
+        <div className="space-x-4">
+          <Link
+            to="/benefits"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            Benefits
+          </Link>
+          <Link
+            to="/how-it-works"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            How it works
+          </Link>
+          <Link
+            to="/fundraising-guides"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            Fundraising Guides
+          </Link>
+          <Link
+            to="/blog"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            Blog
+          </Link>
+        </div>
+        <div className="space-x-4">
+          <Link
+            to="/sign-in"
+            className="text-green-500 font-bold hover:scale-125 hover:text-green-500"
+          >
+            Login
+          </Link>
+          &nbsp;
+          <Button
+              as={NavLink}
+              to="/sign-up"
+              className={twMerge(
+                "  !bg-green-500   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[10px] hover:scale-125"
+              )}
+            >
+              <span
+                className={twMerge(
+                  "!text-green-200 text-[10px] font-[900] uppercase tracking-[2px] hover:scale-110"
+                )}
+              >
+                Sign Up
+              </span>
+            </Button>
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navbar;
