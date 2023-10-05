@@ -1,16 +1,83 @@
-import React from "react";
+import React , { useState }from "react";
 import Back_02 from "../../assests/images/Back_02.svg";
 import NavBar from "../../components/navbar/Navbar";
 import logo from "../../assests/images/Logo.png";
 import TextField from "../../components/Text_Field";
-import { Link } from "react-router-dom";
+import { Link, redirect } from "react-router-dom";
 import Button from "../../components/Button";
 import { NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 const Index = () => {
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const [formData, setFormData] = useState({
+    fname: "",
+    lname: "",
+    email: "",
+    password: "",
+    district: "",
+    mobile: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const userData = {
+      fname: formData.fname,
+      lname: formData.lname,
+      email: formData.email,
+      password: formData.password,
+      district: formData.district,
+      mobile: formData.mobile,
+    };
+
+    console.log("asas",userData);
+    try {
+      const response = await fetch("http://localhost:8000/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      });
+
+      if (response.ok) {
+        window.alert("Successfully Regitered");
+        setRegistrationSuccess(true);
+        // User successfully registered
+        // You can redirect to a login page or perform other actions here
+      } else {
+        // Handle registration error, e.g., display an error message to the user
+        console.error("Registration failed");
+        window.alert("Registration failed");
+      }
+    } catch (error) {
+      console.error("Registration failed:", error);
+      window.alert("Registration failed");
+    }
+  };
+
   return (
     <div>
+       {registrationSuccess ? (
+        // Display a "Thank You" message and a link to the next page upon successful registration
+        <div className="flex flex-col justify-center items-center m-20">
+           <img src={logo} alt="logo" className="w-1/6" /><br/><br/><br/>
+           <h1 className="text-2xl font-semibold">Thank you for registering!</h1><br/>
+          
+          <Link to="/" className="bg-green-600 rounded-xl m-20 border-2 border-green-950 w-1/12  flex items-center justify-center text-center text-green-200 text-lg font-semibold tracking-wider h-11 hover:scale-125 shadow-2xl">Home</Link>
+        </div>
+      ) : (
+
       <div className="grid grid-cols-5 bg-slate-200">
       <div className="col-span-2 flex  justify-center items-center">
           <div className="p-20 flex  flex-col justify-center items-center text-center">
@@ -39,14 +106,19 @@ const Index = () => {
               <p className="text-xl font-medium tracking-wide font-sans">Enter Your details to sign in</p>
               
             </div>
+            <form onSubmit={handleSubmit}>
             <div className="ml-10 mr-10">
+            
             <div className="grid grid-cols-2 ">
+              
     <div className="mr-1">
+   
     <TextField
               name="fname"
               type="text"
               label=""
               placeholder="First Name"
+              onChange={handleChange}
             />
     </div>
     <div className="ml-1">
@@ -55,6 +127,7 @@ const Index = () => {
               type="text"
               label=""
               placeholder="Last Name"
+              onChange={handleChange}
             />
     </div>
 
@@ -64,24 +137,29 @@ const Index = () => {
               type="text"
               label=""
               placeholder="E-mail Address"
+              onChange={handleChange}
             />
             <TextField
               name="password"
               type="password"
               label=""
               placeholder="Password"
+              onChange={handleChange}
+            
             />
             <TextField
               name="district"
               type="text"
               label=""
               placeholder="District"
+              onChange={handleChange}
             />
              <TextField
-              name="district"
+              name="mobile"
               type="text"
               label=""
-              placeholder="District"
+              placeholder="Mobile Number"
+              onChange={handleChange}
             />
             </div>
 
@@ -90,9 +168,14 @@ const Index = () => {
             </div>
             
             <div className="flex justify-end mr-10">
-            <Button
-              as={NavLink}
-              to="/"
+
+              <button type="submit" className="!bg-green-600   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125">
+                Submit
+
+              </button>
+            {/* <Button
+              type="submit"
+              //onClick={handleSubmit}
               className={twMerge(
                 "  !bg-green-600   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
               )}
@@ -105,11 +188,13 @@ const Index = () => {
                 Sign Up
               </span>
             </Button>
+             */}
             </div>
+        </form>
             
           </div>
         </div>
-      </div>
+      </div>)}
     </div>
   );
 };
