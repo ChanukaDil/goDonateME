@@ -15,29 +15,37 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="space-x-4">
-          <Link
-            to="/benefits"
+        <Link
+            to="/"
             className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
           >
-            Benefits
+            Home
           </Link>
+        <Link
+            to="/donation"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            Donations
+          </Link>
+         
           <Link
             to="/how-it-works"
             className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
           >
             How it works
           </Link>
-          <Link
-            to="/fundraising-guides"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
-          >
-            Fundraising Guides
-          </Link>
+          
           <Link
             to="/blog"
             className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
           >
-            Blog
+            Need donations
+          </Link>
+          <Link
+            to="/account"
+            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+          >
+            My account
           </Link>
         </div>
         <div className="space-x-4">
