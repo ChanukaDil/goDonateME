@@ -10,6 +10,8 @@ import { twMerge } from "tailwind-merge";
 
 
 const Index = () => {
+
+  console.log("email : ",sessionStorage.uEmail);
   return (
     <>
       {/*  First section */}

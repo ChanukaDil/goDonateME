@@ -8,6 +8,13 @@ import { twMerge } from "tailwind-merge";
 import Card from './Card';
 
 const Index = () => {
+  const handleDonation = () =>{
+    if(sessionStorage.uEmail){
+      window.location.href = '/add-donation'; 
+    }else{
+      window.alert("You need to log in for add donation");
+    }
+  }
   return (
     <div>
         <br/>
@@ -15,7 +22,7 @@ const Index = () => {
         <div className='flex justify-end m-8'>
         <Button
                 as={NavLink}
-                to="/add-donation"
+                onClick = {handleDonation}
                 className={twMerge(
                   "  !bg-green-800   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
                 )}

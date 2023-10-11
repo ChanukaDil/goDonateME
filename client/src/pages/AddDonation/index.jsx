@@ -10,6 +10,10 @@ import donation from "../../assests/images/don.png";
 import ImageUpload from "../../components/Image_Upload";
 
 const Index = () => {
+  const handleDonation = () =>{
+
+   
+  }
   return (
     <div>
       <br />
@@ -50,9 +54,10 @@ const Index = () => {
             </div>
             <div className="flex justify-center items-center">
               <div className="flex justify-end items-center">
-                <Button
+               
+                  <Button
                   as={NavLink}
-                  to="/"
+                  onClick = {handleDonation}
                   className={twMerge(
                     "  !bg-blue-700   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
                   )}
@@ -65,6 +70,9 @@ const Index = () => {
                     Add Donation
                   </span>
                 </Button>
+
+  
+                
               </div>
             </div>
           </div>
