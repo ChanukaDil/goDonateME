@@ -4,6 +4,10 @@ import NavBar from "../../components/navbar/Navbar";
 import FormInput from '../../components/FormInput';
 
 const Index = () => {
+
+
+  
+
   return (
     <div>
      
