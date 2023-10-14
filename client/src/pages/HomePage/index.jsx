@@ -8,10 +8,9 @@ import Button from "../../components/Button";
 import { NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
-
 const Index = () => {
 
-  console.log("email : ",sessionStorage.uEmail);
+  console.log("email : ", sessionStorage.uEmail);
   return (
     <>
       {/*  First section */}
@@ -25,7 +24,6 @@ const Index = () => {
         >
           <div className="w-full flex col-span-2">
             <div className="grid w-full justify-center items-center ">
-           
               <p className="text-[60px] font-bold pt-10 px-20">
                 Simple, Powerful Fundraising
               </p>
@@ -66,24 +64,44 @@ const Index = () => {
               <br /> takes just a few minutes
             </p>
             <div className="px-20">
-            <Button
-              as={NavLink}
-              to="/table-booking"
-              className={twMerge(
-                "  !bg-green-800   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
-              )}
-            >
-              <span
+              {sessionStorage.uEmail ? (
+                <Button
+                as={NavLink}
+                to="/donation"
                 className={twMerge(
-                  "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
+                  "  !bg-green-800   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
                 )}
               >
-                Start a Fundraiser !
-              </span>
-            </Button>
-            </div>
+                <span
+                  className={twMerge(
+                    "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
+                  )}
+                >
+                  Start a Fundraiser !
+                </span>
+              </Button>
+                
+              ) : (
 
-           
+                <Button
+                  as={NavLink}
+                  to="/sign-in"
+                  className={twMerge(
+                    "  !bg-green-800   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
+                  )}
+                >
+                  <span
+                    className={twMerge(
+                      "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
+                    )}
+                  >
+                    Start a Fundraiser !
+                  </span>
+                </Button>
+
+                
+              )}
+            </div>
           </div>
         </div>
         <br />
@@ -171,7 +189,6 @@ const Index = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

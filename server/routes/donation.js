@@ -1,9 +1,12 @@
 import express from "express";
-import { register } from "../controllers/user.js";
+
+import { addDonation , view } from './../controllers/donation.js';
 
 const router = express.Router();
 
-router.post("/register", register);
+router.post("/addDonation", addDonation);
+router.use("/viewDonation", view);
+
 
 
 export default router;

@@ -10,7 +10,6 @@ export const addDonation = async (req, res, next) => {
         item : item,
         quantity : quantity,
         description: description,
-        password: hashedPassword,
         mobileNo : mobileNo,
         image : image,
       });
@@ -25,4 +24,18 @@ export const addDonation = async (req, res, next) => {
         })
       );
     }
+
   };
+
+  export const view = async (req, res, next) => {
+    try {
+      const donations = await Donation.find();
+      res.status(200).json({ data: donations, messege: "Success" });
+    } catch (error) {
+      res.status(500).json({ error: "Internal server error" });
+    }
+    // res.json("Sucess");
+  };
+
+  
+
