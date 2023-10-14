@@ -94,9 +94,6 @@ const Index = () => {
     }
   };
 
-
-
-
   return (
     <div>
       <br />
@@ -110,6 +107,7 @@ const Index = () => {
           <img src={donation} alt="donation" className="w-3/4" />
         </div>
         <div className="col-span-4">
+
           <form
             onSubmit={(e) => {
               e.preventDefault();

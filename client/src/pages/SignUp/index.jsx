@@ -30,7 +30,7 @@ const Index = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     const userData = {
       fname: formData.fname,
       lname: formData.lname,
@@ -39,8 +39,13 @@ const Index = () => {
       district: formData.district,
       mobile: formData.mobile,
     };
-
-    console.log("asas",userData);
+  
+    // Check if email or password is missing and display an error message
+    if (!userData.email || !userData.password) {
+      window.alert("Email and password are required.");
+      return; // Exit the function to prevent the API call
+    }
+  
     try {
       const response = await fetch("http://localhost:8000/api/user/register", {
         method: "POST",
@@ -49,15 +54,19 @@ const Index = () => {
         },
         body: JSON.stringify(userData),
       });
-
+  
       if (response.ok) {
-        window.alert("Successfully Regitered");
+        window.alert("Successfully Registered");
         setRegistrationSuccess(true);
         // User successfully registered
         // You can redirect to a login page or perform other actions here
+      } else if (response.status === 409) {
+        // Email already exists, display an error message to the user
+        const data = await response.json();
+        window.alert(data.message);
       } else {
-        // Handle registration error, e.g., display an error message to the user
-        console.error("Registration failed");
+        // Handle other registration errors, e.g., display a generic error message
+        console.error("Registration failed:", response.statusText);
         window.alert("Registration failed");
       }
     } catch (error) {
@@ -65,6 +74,8 @@ const Index = () => {
       window.alert("Registration failed");
     }
   };
+  
+  
 
   return (
     <div>

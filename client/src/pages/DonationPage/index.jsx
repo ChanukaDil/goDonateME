@@ -5,6 +5,7 @@ import { twMerge } from "tailwind-merge";
 import Card from './Card';
 
 const Index = () => {
+
   const [category, setCategory] = useState([]);
 
   const handleDonation = () => {

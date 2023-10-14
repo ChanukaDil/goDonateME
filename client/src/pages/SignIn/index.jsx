@@ -1,14 +1,64 @@
-import React from "react";
-import Back_02 from "../../assests/images/Back_02.svg";
-import NavBar from "../../components/navbar/Navbar";
+import React, { useState } from "react";
 import logo from "../../assests/images/Logo.png";
 import TextField from "../../components/Text_Field";
-import { Link } from "react-router-dom";
 import Button from "../../components/Button";
-import { NavLink } from "react-router-dom";
-import { twMerge } from "tailwind-merge";
+import { Link , useNavigate  } from "react-router-dom";
 
-const Index = () => {
+const Login = () => {
+  const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const { email, password } = formData;
+
+    if (!email || !password) {
+      window.alert("Email and password are required.");
+      return;
+    }
+
+    try {
+
+      const response = await fetch("http://localhost:8000/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.email,
+          password: formData.password,
+        }),
+      });
+
+      if (response.ok) {
+        // Handle a successful login
+        window.alert("Login successful");
+        sessionStorage.setItem("uEmail", email);
+        navigate("/"); 
+        // You can also handle token storage or redirection to another page here.
+      } else {
+        // Handle login failure
+        const data = await response.json();
+        window.alert(data.error);
+      }
+    } catch (error) {
+      console.error("Login failed:", error);
+      window.alert("Login failed");
+    }
+  };
+
   return (
     <div>
       <div className="grid grid-cols-5 bg-slate-200">
@@ -42,44 +92,43 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="p-10">
-              <TextField
-                name="email"
-                type="text"
-                label=""
-                placeholder="Enter your email address"
-              />
-            </div>
-            <div className="p-10">
-              <TextField
-                name="password"
-                type="password"
-                label=""
-                placeholder="Enter your password"
-              />
-            </div>
+            <form onSubmit={handleSubmit}>
+              <div className="p-10">
+                <TextField
+                  name="email"
+                  type="text"
+                  label=""
+                  placeholder="Enter your email address"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="p-10">
+                <TextField
+                  name="password"
+                  type="password"
+                  label=""
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                />
+              </div>
 
-            <div className="pt-5">
-              <hr className="w-5-6 h-4 m-10 " />
-            </div>
+              <div className="pt-5">
+                <hr className="w-5-6 h-4 m-10 " />
+              </div>
 
-            <div className="flex justify-end mr-10">
-              <Button
-                as={NavLink}
-                to="/"
-                className={twMerge(
-                  "  !bg-green-800   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
-                )}
-              >
-                <span
-                  className={twMerge(
-                    "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
-                  )}
+              <div className="flex justify-end mr-10">
+                <Button
+                  type="submit"
+                  className="!bg-green-800 border-green-400 border-2 border-solid px-[30px] py-[20px] lg:px-[15px] lg:py-[15px] hover:scale-125"
                 >
-                  Sign In
-                </span>
-              </Button>
-            </div>
+                  <span className="!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110">
+                    Sign In
+                  </span>
+                </Button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -87,4 +136,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Login;

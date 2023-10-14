@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 const Index = () => {
+
   console.log("email : ", sessionStorage.uEmail);
   return (
     <>
