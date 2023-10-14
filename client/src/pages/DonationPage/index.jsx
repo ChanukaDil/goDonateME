@@ -56,10 +56,13 @@ const Index = () => {
       <div className='flex justify-center'>
         <hr className='w-full m-4 mt-0' />
       </div>
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+      <h2 className="m-6 text-gray-900 font-semibold text-2xl">Donations</h2><br/>
+    
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-10 m-6'>
         {category.map((option, index) => (
           <div key={index}>
             <Card
+               _id = {option._id}
               title={option.item}
               description={option.description}
               image={option.image}

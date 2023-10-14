@@ -8,15 +8,7 @@ const donationSchema = new Schema(
       type: String,
       required: false,
     },
-    quantity: {
-      type: Number,
-      required: false,
-    },
     description: {
-      type: String,
-      required: false,
-    },
-    email: {
       type: String,
       required: false,
     },
@@ -34,4 +26,4 @@ const donationSchema = new Schema(
 
 
 
-export default mongoose.model("Donation", donationSchema);
+export default mongoose.model("Need", donationSchema);

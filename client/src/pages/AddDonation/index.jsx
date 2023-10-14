@@ -11,12 +11,14 @@ import ImageUpload from "../../components/Image_Upload";
 
 const Index = () => {
   const navigate = useNavigate();
+  const email = sessionStorage.uEmail;
   const [productData, setProductData] = useState({
     item: "",
     quantity: 0,
     number: "",
     description: "",
     imageBase64: "",
+    email: "",
   });
 
   const handleInputChange = (event) => {
@@ -68,6 +70,7 @@ const Index = () => {
       number: productData.number,
       description: productData.description,
       image: productData.imageBase64,
+      email:email,
     };
 
     try {

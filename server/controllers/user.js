@@ -75,3 +75,21 @@ export const login = async (req, res, next) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 };
+
+
+
+export const getUserById = async (req, res, next) => {
+  const _id = req.params.id;
+  
+  try {
+    const donations = await Donation.find({ _id }); // Find donations based on the _id
+    if (!donations || donations.length === 0) {
+      return res.status(404).json({ error: "Donation not found" });
+    }
+
+    res.status(200).json({ data: donations, message: "Success" });
+  } catch (error) {
+    res.status(500).json({ error: "Internal server error" });
+  }
+  // res.json("Sucess");
+};

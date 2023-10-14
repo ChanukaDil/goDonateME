@@ -26,7 +26,7 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="bg-transpaerent p-4 fixed top-0 left-0 right-0 z-10 bg-white ">
+    <nav className="bg-slate-50 p-4 fixed top-0 left-0 right-0 z-10 bg-white ">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-2xl font-semibold">
           <Link to="/">
@@ -55,7 +55,7 @@ const Navbar = () => {
           </Link>
 
           <Link
-            to="/blog"
+            to="/need-donation"
             className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
           >
             Need donations
@@ -92,7 +92,7 @@ const Navbar = () => {
               >
                 Login
               </Link>
-              &nbsp;
+              &nbsp;&nbsp;&nbsp;
               <Button
                 as={NavLink}
                 to="/sign-up"
