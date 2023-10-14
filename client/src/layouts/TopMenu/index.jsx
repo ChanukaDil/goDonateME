@@ -16,7 +16,7 @@ const Main = (props) => {
         {props.children}
         {props.footer && (
           <div className="-mx-5 -mb-5 mt-10">
-            <Footer />
+            <Footer  className=" left-0 right-0"/>
           </div>
         )}
       </div>

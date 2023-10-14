@@ -3,9 +3,11 @@ import { NavLink  } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 import Button from "../../components/Button";
 
-const Card = ({ title, description, image, quantity }) => {
+const Card = ({ _id , title, description, image, quantity }) => {
+ 
+  const url = `/view/${_id}`;
   return (
-    <div className="bg-white rounded-lg shadow-md p-4">
+    <div className="bg-green-200 rounded-lg shadow-2xl p-5 border-1 border-green-600">
       {image && (
         <div className="image-container" style={{ height: "200px" }}>
           <img
@@ -24,7 +26,7 @@ const Card = ({ title, description, image, quantity }) => {
         <div style={{ flex: "1" }} className="flex justify-center items-center">
           <Button
             as={NavLink}
-            //onClick={handleDonation}
+            to={url}
             className={twMerge(
               "  !bg-blue-800   border-blue-700 border-2 border-solid  px-[30px] py-[15px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
             )}
