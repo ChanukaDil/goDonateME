@@ -77,19 +77,19 @@ export const login = async (req, res, next) => {
 };
 
 
-
 export const getUserById = async (req, res, next) => {
-  const _id = req.params.id;
+  const { id } = req.body;
   
   try {
-    const donations = await Donation.find({ _id }); // Find donations based on the _id
-    if (!donations || donations.length === 0) {
-      return res.status(404).json({ error: "Donation not found" });
+    const user = await User.findById(id); // Find the user based on the _id
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
     }
 
-    res.status(200).json({ data: donations, message: "Success" });
+    res.status(200).json({ data: user, message: "Success" });
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
-  // res.json("Sucess");
 };
+
+
