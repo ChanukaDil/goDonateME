@@ -10,8 +10,6 @@ import donation from "../../assests/images/don.png";
 import ImageUpload from "../../components/Image_Upload";
 
 const Index = () => {
-<<<<<<< Updated upstream
-=======
   const navigate = useNavigate();
   const [productData, setProductData] = useState({
     item: "",
@@ -99,7 +97,6 @@ const Index = () => {
 
 
 
->>>>>>> Stashed changes
   return (
     <div>
       <br />
@@ -113,45 +110,6 @@ const Index = () => {
           <img src={donation} alt="donation" className="w-3/4" />
         </div>
         <div className="col-span-4">
-<<<<<<< Updated upstream
-          
-          <TextField name="lname" type="text" label="Item" placeholder="Item" />
-          <br />
-          <TextField
-            name="quantity"
-            type="number"
-            label="Quantity"
-            placeholder="Quantity"
-          />
-          <br />
-          <TextField
-            name="description"
-            type="text"
-            label="Description"
-            placeholder="Description"
-          />
-          <br/>
-          <TextField
-            name="number"
-            type="number"
-            label="Mobile Number"
-            placeholder="Mobile Number"
-          />
-          <div className="grid md:grid-cols-3">
-            <div className="col-span-2">
-              <ImageUpload />
-            </div>
-            <div className="flex justify-center items-center">
-              <div className="flex justify-end items-center">
-                <Button
-                  as={NavLink}
-                  to="/"
-                  className={twMerge(
-                    "  !bg-blue-700   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
-                  )}
-                >
-                  <span
-=======
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -214,16 +172,10 @@ const Index = () => {
                   <Button
                     as={NavLink}
                     onClick={handleSubmit}
->>>>>>> Stashed changes
                     className={twMerge(
                       "  !bg-blue-700   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
                     )}
                   >
-<<<<<<< Updated upstream
-                    Add Donation
-                  </span>
-                </Button>
-=======
                     <span
                       className={twMerge(
                         "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
@@ -233,7 +185,6 @@ const Index = () => {
                     </span>
                   </Button>
                 </div>
->>>>>>> Stashed changes
               </div>
             </div>
           </form>

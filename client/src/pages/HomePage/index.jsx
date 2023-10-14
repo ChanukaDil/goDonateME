@@ -9,10 +9,7 @@ import { NavLink } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 const Index = () => {
-<<<<<<< Updated upstream
-=======
   console.log("email : ", sessionStorage.uEmail);
->>>>>>> Stashed changes
   return (
     <>
       {/*  First section */}
