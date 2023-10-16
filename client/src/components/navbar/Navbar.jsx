@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assests/images/Logo.png";
 import Button from "../Button";
@@ -8,6 +8,8 @@ import { twMerge } from "tailwind-merge";
 const Navbar = () => {
   const email = sessionStorage.uEmail;
   const navigate = useNavigate();
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const handleLogout = () => {
     // Show a confirmation dialog
     const confirmed = window.confirm("Are you sure you want to log out?");
@@ -26,44 +28,56 @@ const Navbar = () => {
   });
 
   return (
-    <nav className="bg-slate-50 p-4 fixed top-0 left-0 right-0 z-10 bg-white ">
+    <nav className="bg-slate-50 p-4 fixed top-0 left-0 right-0 z-10 bg-white w-screen">
       <div className="container mx-auto flex justify-between items-center">
         <div className="text-white text-2xl font-semibold">
           <Link to="/">
             <img src={logo} alt="logo" />
           </Link>
         </div>
-        <div className="space-x-4">
-          <Link
-            to="/"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
+        <div className="lg:hidden">
+          {/* Button to toggle the mobile menu */}
+          <button
+            onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+            className="block text-2xl focus:outline-none"
           >
+            &#8801;
+          </button>
+        </div>
+        {/* Show the navigation links based on the mobile menu state */}
+        {isMobileMenuOpen && (
+          <div className="grid lg:hidden">
+            <Link to="/" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
+              Home
+            </Link>
+            <Link to="/donation" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
+              Donations
+            </Link>
+            {/* <Link to="/how-it-works" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
+              How it works
+            </Link> */}
+            <Link to="/need-donation" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
+              Need donations
+            </Link>
+            <Link to="/account" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
+              My account
+            </Link>
+          </div>
+        )}
+        <div className="grid hidden lg:flex space-x-4">
+          <Link to="/" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
             Home
           </Link>
-          <Link
-            to="/donation"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
-          >
+          <Link to="/donation" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
             Donations
           </Link>
-
-          <Link
-            to="/how-it-works"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
-          >
+          {/* <Link to="/how-it-works" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
             How it works
-          </Link>
-
-          <Link
-            to="/need-donation"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
-          >
+          </Link> */}
+          <Link to="/need-donation" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
             Need donations
           </Link>
-          <Link
-            to="/account"
-            className="text-black font-bold hover:scale-125 hover:text-green-500 p-6"
-          >
+          <Link to="/account" className="text-black font-bold hover:scale-125 hover:text-green-500 p-6">
             My account
           </Link>
         </div>

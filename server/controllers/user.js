@@ -78,11 +78,14 @@ export const login = async (req, res, next) => {
 
 
 export const getUserById = async (req, res, next) => {
-  const { id } = req.body;
+
+  const email = req.params.email;
+  console.log( "email", email);
   
   try {
-    const user = await User.findById(id); // Find the user based on the _id
-    if (!user) {
+    const user = await User.find({ email }); // Find donations based on the _id
+    if (!user || user.length === 0) {
+
       return res.status(404).json({ error: "User not found" });
     }
 
@@ -90,6 +93,40 @@ export const getUserById = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
+
+  // res.json("Sucess");
 };
 
+
+export const updateUser = async (req, res) => {
+  try {
+    const email = req.params.email;
+    const { firstName, lastName, district, mobileNo, password } = req.body;
+
+    const salt = await bcryptjs.genSalt(10);
+    const hashedPassword = await bcryptjs.hash(password, salt);
+
+    const existingProduct = await User.findOne({ email: email });
+
+    if (!existingProduct) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    existingProduct.firstName = firstName;
+    existingProduct.lastName = lastName;
+    existingProduct.email = email;
+    existingProduct.district = district;
+    existingProduct.mobileNo = mobileNo;
+    existingProduct.password = hashedPassword;
+
+    await existingProduct.save();
+
+    res.status(200).json({ message: "User updated successfully" });
+  } catch (error) {
+    console.error("Error:", error);
+    res
+      .status(500)
+      .json({ message: "Error updating product", error: error.message });
+  }
+};
 

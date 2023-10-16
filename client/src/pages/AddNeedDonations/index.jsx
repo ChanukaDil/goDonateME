@@ -11,6 +11,7 @@ import ImageUpload from "../../components/Image_Upload";
 
 const Index = () => {
   const navigate = useNavigate();
+  const email = sessionStorage.uEmail;
   const [productData, setProductData] = useState({
     item: "",
     number: "",
@@ -65,6 +66,7 @@ const Index = () => {
       number: productData.number,
       description: productData.description,
       image: productData.imageBase64,
+      email:email,
     };
 
     try {

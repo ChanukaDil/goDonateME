@@ -1,4 +1,4 @@
-import React , { useState }from "react";
+import React, { useState } from "react";
 import Back_02 from "../../assests/images/Back_02.svg";
 import NavBar from "../../components/navbar/Navbar";
 import logo from "../../assests/images/Logo.png";
@@ -27,10 +27,9 @@ const Index = () => {
     });
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-  
+
     const userData = {
       fname: formData.fname,
       lname: formData.lname,
@@ -39,13 +38,13 @@ const Index = () => {
       district: formData.district,
       mobile: formData.mobile,
     };
-  
+
     // Check if email or password is missing and display an error message
     if (!userData.email || !userData.password) {
       window.alert("Email and password are required.");
       return; // Exit the function to prevent the API call
     }
-  
+
     try {
       const response = await fetch("http://localhost:8000/api/user/register", {
         method: "POST",
@@ -54,9 +53,10 @@ const Index = () => {
         },
         body: JSON.stringify(userData),
       });
-  
+
       if (response.ok) {
         window.alert("Successfully Registered");
+        window.location.href = '/sign-in'; 
         setRegistrationSuccess(true);
         // User successfully registered
         // You can redirect to a login page or perform other actions here
@@ -74,138 +74,108 @@ const Index = () => {
       window.alert("Registration failed");
     }
   };
-  
-  
 
   return (
     <div>
-       {registrationSuccess ? (
-        // Display a "Thank You" message and a link to the next page upon successful registration
-        <div className="flex flex-col justify-center items-center m-20">
-           <img src={logo} alt="logo" className="w-1/6" /><br/><br/><br/>
-           <h1 className="text-2xl font-semibold">Thank you for registering!</h1><br/>
-          
-          <Link to="/" className="bg-green-600 rounded-xl m-20 border-2 border-green-950 w-1/12  flex items-center justify-center text-center text-green-200 text-lg font-semibold tracking-wider h-11 hover:scale-125 shadow-2xl">Home</Link>
-        </div>
-      ) : (
-
-      <div className="grid grid-cols-5 bg-slate-200">
-      <div className="col-span-2 flex  justify-center items-center">
-          <div className="p-20 flex  flex-col justify-center items-center text-center">
-            <img src={logo} alt="logo" className="w-3/4" />
-            <br />
-            <br />
-            <br />
-            <h1 className="text-2xl font-semibold">Sign Up to goDonateMe</h1>
-          </div>
-        </div>
-        <div className="flex justify-center items-center h-screen col-span-3">
-          <div className="bg-white rounded-2xl p-4 h-4/5 w-4/5 m-4">
-            <div className="m-4 flex justify-end mr-10">
-              <p className="text-lg tracking-wide font-normal ">
-                Already have an Account?{" "}
-                <Link
-                  to="/sign-in"
-                  className="text-green-700 font-bold hover:text-blue-600"
-                >
-                  Sign In
-                </Link>
-              </p>
-            </div>
-            <div className="m-10">
-                <br/>
-              <p className="text-xl font-medium tracking-wide font-sans">Enter Your details to sign in</p>
-              
-            </div>
-            <form onSubmit={handleSubmit}>
-            <div className="ml-10 mr-10">
-            
-            <div className="grid grid-cols-2 ">
-              
-    <div className="mr-1">
    
-    <TextField
-              name="fname"
-              type="text"
-              label=""
-              placeholder="First Name"
-              onChange={handleChange}
-            />
-    </div>
-    <div className="ml-1">
-    <TextField
-              name="lname"
-              type="text"
-              label=""
-              placeholder="Last Name"
-              onChange={handleChange}
-            />
-    </div>
-
-</div>
-            <TextField
-              name="email"
-              type="text"
-              label=""
-              placeholder="E-mail Address"
-              onChange={handleChange}
-            />
-            <TextField
-              name="password"
-              type="password"
-              label=""
-              placeholder="Password"
-              onChange={handleChange}
-            
-            />
-            <TextField
-              name="district"
-              type="text"
-              label=""
-              placeholder="District"
-              onChange={handleChange}
-            />
-             <TextField
-              name="mobile"
-              type="text"
-              label=""
-              placeholder="Mobile Number"
-              onChange={handleChange}
-            />
+        <div className="grid grid-cols-5 bg-slate-200">
+          <div className="col-span-2 flex  justify-center items-center">
+            <div className="p-20 flex  flex-col justify-center items-center text-center">
+              <img src={logo} alt="logo" className="w-3/4" />
+              <br />
+              <br />
+              <br />
+              <h1 className="text-2xl font-semibold">Sign Up to goDonateMe</h1>
             </div>
+          </div>
+          <div className="flex justify-center items-center h-screen col-span-3">
+            <div className="bg-white rounded-2xl p-4 h-4/5 w-4/5 m-4">
+              <div className="m-4 flex justify-end mr-10">
+                <p className="text-lg tracking-wide font-normal ">
+                  Already have an Account?{" "}
+                  <Link
+                    to="/sign-in"
+                    className="text-green-700 font-bold hover:text-blue-600"
+                  >
+                    Sign In
+                  </Link>
+                </p>
+              </div>
+              <div className="m-10">
+                <br />
+                <p className="text-xl font-medium tracking-wide font-sans">
+                  Enter Your details to sign in
+                </p>
+              </div>
+              <form onSubmit={handleSubmit}>
+                <div className="ml-10 mr-10">
+                  <div className="grid grid-cols-2 ">
+                    <div className="mr-1">
+                      <TextField
+                        name="fname"
+                        type="text"
+                        label=""
+                        placeholder="First Name"
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="ml-1">
+                      <TextField
+                        name="lname"
+                        type="text"
+                        label=""
+                        placeholder="Last Name"
+                        onChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  <TextField
+                    name="email"
+                    type="text"
+                    label=""
+                    placeholder="E-mail Address"
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    name="password"
+                    type="password"
+                    label=""
+                    placeholder="Password"
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    name="district"
+                    type="text"
+                    label=""
+                    placeholder="District"
+                    onChange={handleChange}
+                  />
+                  <TextField
+                    name="mobile"
+                    type="text"
+                    label=""
+                    placeholder="Mobile Number"
+                    onChange={handleChange}
+                  />
+                </div>
 
-            <div className="pt-5 mt-10">
-            <hr className="w-5-6 h-4 ml-10 mr-10  "/>
+                <div className="pt-5 mt-10">
+                  <hr className="w-5-6 h-4 ml-10 mr-10  " />
+                </div>
+
+                <div className="flex justify-end mr-10">
+                  <button
+                    type="submit"
+                    className="!bg-green-600   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
-            
-            <div className="flex justify-end mr-10">
-
-              <button type="submit" className="!bg-green-600   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125">
-                Submit
-
-              </button>
-            {/* <Button
-              type="submit"
-              //onClick={handleSubmit}
-              className={twMerge(
-                "  !bg-green-600   border-green-400 border-2 border-solid  px-[30px] py-[20px]  lg:px-[15px] lg:py-[15px] hover:scale-125"
-              )}
-            >
-              <span
-                className={twMerge(
-                  "!text-green-200 text-[15px] font-[900] uppercase tracking-[2px] hover:scale-110"
-                )}
-              >
-                Sign Up
-              </span>
-            </Button>
-             */}
-            </div>
-        </form>
-            
           </div>
         </div>
-      </div>)}
+     
     </div>
   );
 };

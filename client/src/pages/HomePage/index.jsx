@@ -22,12 +22,12 @@ const Index = () => {
           }}
           className="w-m flex h-screen flex-col bg-repeat p-5 pt-[80px] text-black"
         >
-          <div className="w-full flex col-span-2">
+          <div className="w-full grid md:flex col-span-2">
             <div className="grid w-full justify-center items-center ">
-              <p className="text-[60px] font-bold pt-10 px-20">
+              <p className="text-[30px] md:text-[60px] font-bold pt-10 px-20">
                 Simple, Powerful Fundraising
               </p>
-              <p className="text-[25px] pb-20 px-20 py-10">
+              <p className="text-[15px] md:text-[25px] pb-20 px-20 py-10">
                 Online forms, fundraising pages, and native integrations that
                 help you engage donors, manage giving, and increase your
                 revenue.
@@ -47,7 +47,7 @@ const Index = () => {
         }}
         className="w-m flex h-screen flex-col bg-repeat p-5 pt-[80px]  text-black"
       >
-        <div className="flex flex-col md:flex-row w-full ">
+        <div className="flex flex-col md:flex-row w-full h-screen">
           <div className="flex w-full">
             {/* <img src={img_01} alt="image 01"/> */}
           </div>
@@ -115,14 +115,14 @@ const Index = () => {
             backgroundColor: "white",
             backgroundSize: "cover",
           }}
-          className="w-m flex h-screen flex-col bg-repeat p-5 pt-[80px]  text-black"
+          className="w-m flex h-full md:h-screen flex-col bg-repeat p-5 pt-[80px]  text-black"
         >
-          <div className="flex justify-center items-center text-[60px] font-bold">
+          <div className="flex justify-center items-center text-[60px] font-bold ">
             Why Donate ?
           </div>
           <br />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 justify-arround  p-40 pt-4 h-full">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 justify-arround  md:p-40 pt-4 h-full md:h-screen">
             <div className="grid bg-gray-200 rounded-lg  p-8">
               {/* Content for the second card */}
               <h2 className=" font-semibold text-[40px]">
@@ -157,9 +157,9 @@ const Index = () => {
         </div>
       </div>
       {/* fourth section */}
-      <div className="h-screen p-36 pt-10">
+      <div className="h-screen p-4 md:p-36 pt-10">
         <div
-          className="h-full rounded-3xl grid justify-center text-center leading-10 "
+          className="h-screen rounded-3xl grid justify-center text-center leading-10 "
           style={{
             backgroundImage: `url(${Image})`,
             backgroundSize: "cover",
@@ -189,6 +189,7 @@ const Index = () => {
           </div>
         </div>
       </div>
+      <br/><br/><br/><br/><br/>
     </>
   );
 };
