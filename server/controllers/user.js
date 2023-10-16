@@ -77,14 +77,15 @@ export const login = async (req, res, next) => {
 };
 
 
-
 export const getUserById = async (req, res, next) => {
+
   const email = req.params.email;
   console.log( "email", email);
   
   try {
     const user = await User.find({ email }); // Find donations based on the _id
     if (!user || user.length === 0) {
+
       return res.status(404).json({ error: "User not found" });
     }
 
@@ -92,6 +93,7 @@ export const getUserById = async (req, res, next) => {
   } catch (error) {
     res.status(500).json({ error: "Internal server error" });
   }
+
   // res.json("Sucess");
 };
 
@@ -127,3 +129,4 @@ export const updateUser = async (req, res) => {
       .json({ message: "Error updating product", error: error.message });
   }
 };
+
