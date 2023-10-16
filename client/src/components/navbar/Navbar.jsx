@@ -36,7 +36,7 @@ const Navbar = () => {
           </Link>
         </div>
         <div className="lg:hidden">
-          {/* Button to toggle the mobile menu */}
+          {/* Button to toggluiuie the mobile menu */}
           <button
             onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
             className="block text-2xl focus:outline-none"
