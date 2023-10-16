@@ -66,6 +66,7 @@ const Index = () => {
               description={option.description}
               image={option.image}
               quantity={option.quantity}
+              email={option.email}
             />
           </div>
         ))}
