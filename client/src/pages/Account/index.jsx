@@ -5,6 +5,7 @@ import { NavLink, Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
 
 const Index = () => {
+
   const [user, setUser] = useState([]);
   const [donation, setDonation] = useState([]);
   const [needDonation, setNeedDonation] = useState([]);
@@ -219,6 +220,7 @@ const Index = () => {
     fetchData();
     fetchDonation();
   }, [email]);
+
 
   return (
     <div>

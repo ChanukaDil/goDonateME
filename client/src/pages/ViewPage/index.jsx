@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 
 const Index = () => {
   const [category, setCategory] = useState([]);
+
   const [mobile, setMobile] = useState({
     mobileNo: "",
   });
@@ -10,7 +11,6 @@ const Index = () => {
   const { id } = useParams();
   console.log("id:", id);
 
-  
 
   const fetchData = async () => {
     try {
@@ -23,6 +23,7 @@ const Index = () => {
       console.error("Error fetching data:", error);
     }
   };
+
 
   const email =  category.email;
 
@@ -46,13 +47,11 @@ const Index = () => {
   };
 
 
-  // Call fetchData when the component loads or when _id changes
   useEffect(() => {
     fetchUserData();
     fetchData();
   }, [id]);
 
-  console.log("item : ", category.item);
   return (
     <div>
       <div>
@@ -71,6 +70,7 @@ const Index = () => {
             className="flex justify-center items-center"
           >
             <div className="flex flex-col justify-center items-center">
+
               <h1 className="text-black text-3xl font-bold">{category.item}</h1>
               <br />
               <div className="justify-left">
@@ -83,12 +83,12 @@ const Index = () => {
               <h1>Description : {category.description}  </h1>
               </div>
               
+
             </div>
           </div>
         </div>
       </div>
 
-     
     </div>
   );
 };
